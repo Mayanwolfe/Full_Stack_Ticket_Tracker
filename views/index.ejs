@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <head>
-<title>Todo App</title>
-<!--STYLESHEET LINK-->
-<link rel="stylesheet" href="/style.css">
-<!--GOOGLE FONT-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@500&display=swap" rel="stylesheet">
-<!--ICONS-->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Local Storage Ticket Tracker</title>
 </head>
 
 <body>
-    <section class="todo-container">
-        <h2>To Do List</h2>
-        <section class="todo">
-            <form action="/" method="POST" class="todo-header">
-                <input type="text" name="title" value="title">
-                <textarea rows="6" cols="45" name="content">content</textarea>
-                <button type="submit"><span class="fas fa-plus">Add Task</span></button>
+    <section class="container">
+        <h1>Ticket Tracker for Demo</h1>
+        <section class="jumbotron">
+            <h3>Add New Issue:</h3>
+            <form id="issueInputForm" method="POST" action="/new">
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Issue Subject...">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Issue Description...">
+                </div>
+                <div class="form-group">
+                    <label for="severity">Severity</label>
+                    <select class="form-control" id="severity" name="severity">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High" selected>High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assignedTo">Assigned To</label>
+                    <input type="text" class="form-control" id="assignedTo" name="assignedTo" placeholder="Enter Person Responsible...">
+                </div>
+                <button type="submit" class="btn btn-warning">Add</button>
             </form>
-            <ul class="todo-list">
-                <% todoTasks.forEach(details => { %>
-                    <li class="todo-list-item">
-                        <div class="todo-list-item-title"><%= details.title %></div>
-                        <div class="todo-list-item-content"><%= details.content %></div>
-                        <a href="/edit/<%= details._id %>" class="edit">
-                        <span class="fas fa-edit"></span>
-                        </a>
-                        <a href="/edit/remove/<%= details._id %>" class="remove">
-                        <span class="fas fa-times"></span>
-                        </a>
-                    </li>
-                <% }) %>
-            </ul>
+        </section>
+        <section class="row">
+            <div class="col-lg-12">
+                <div id="issuesList">
+                    
+                </div>
+            </div>
         </section>
     </section>
 </body>
