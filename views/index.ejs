@@ -42,6 +42,12 @@
                     <% ticketList.forEach(tickets => { %>
                         <div class = "well">
                             <h6>Issue ID: <%=tickets._id%></h6>
+                            <p><span class="label <%=tickets.status== 'Closed' ? 'label-success' : 'label-info'%>"><%=tickets.status%></span></p>
+                            <h3><%=tickets.subject%></h3>
+                            <p><%=tickets.description%></p>
+                            <p><span class="glyphicon glyphicon-time"></span><%=tickets.severity%><span class="glyphicon glyphicon-user"></span><%=tickets.assignedTo%></p>
+                            <a href="/edit/<%=tickets._id%>" class="btn btn-warning">Close</a>
+                            <a href="/edit/remove/<%=tickets._id%>" class="btn btn-danger">Delete</a>
                         </div>
                     <% }) %>
                 </div>

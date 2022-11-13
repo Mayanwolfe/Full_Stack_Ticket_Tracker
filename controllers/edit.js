@@ -1,26 +1,19 @@
-const TodoTask = require('../models/ticketlist')
+const TicketList = require('../models/ticketlist')
 
 module.exports = {
-    getEdit: (req, res) => {
-    const id = req.params.id;
-    TodoTask.find({}, (err, tasks) => {
-        res.render("edit.ejs", { todoTasks: tasks, idTask: id });
-    });
-},
-    deleteTask: (req, res) => {
+    deleteTicket: (req, res) => {
         const id = req.params.id;
-        TodoTask.findByIdAndRemove(id, err => {
+        TicketList.findByIdAndRemove(id, err => {
             if (err) return res.send(500, err);
             res.redirect("/");
         });
     },
-    updateTask: (req, res) => {
+    updateTicket: (req, res) => {
         const id = req.params.id;
-        TodoTask.findByIdAndUpdate(
+        TicketList.findByIdAndUpdate(
             id,
             {
-                title: req.body.title,
-                content: req.body.content
+                status: 'Closed'
             },
             err => {
                 if (err) return res.status(500).send(err);
